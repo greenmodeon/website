@@ -542,10 +542,8 @@
           <div class="col-md-6 col-lg-6">
             <div class="form_container">
               <form
-                target="_blank"
-                class="gform"
+                name="google-sheet"
                 method="POST"
-                action="https://script.google.com/macros/s/AKfycbwie6UVicUiwGpec0GPdv_SdrtWou5jv6wSrLnKfpVurYbVFhUCISLqqwGZkmEvJ4uR/exec"
               >
                 <div class="form-row">
                   <div class="form-group col">
@@ -600,7 +598,6 @@
                       color: rgb(0, 0, 0); /* Dark grey */
                       padding: 15px 32px;
                     "
-                    onclick="window.location.href = 'index.html';"
                     type="submit"
                     class="default"
                     value="SEND"
@@ -715,5 +712,21 @@
     Google Map -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
     <!-- End Google Map -->
+    
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbwie6UVicUiwGpec0GPdv_SdrtWou5jv6wSrLnKfpVurYbVFhUCISLqqwGZkmEvJ4uR/exec";
+      const form = document.forms["google-sheet"];
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) =>
+            alert("Thanks for Contacting us..! We Will Contact You Soon...")
+          )
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
+    
   </body>
 </html>
